@@ -22,7 +22,8 @@ public class dHeap<T extends Comparable<? super T>> implements dHeapInterface<T>
      */
     @SuppressWarnings("unchecked")
     public dHeap() {
-        /* TODO */
+        this.heap = (T[]) new Comparable[6];
+
     }
 
     /**
