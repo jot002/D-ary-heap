@@ -43,7 +43,7 @@ public class dHeapTester {
         array.add(30);
         array.add(8);
         array.heapRepresentation();
-        dHeap array2 = new dHeap(3,5,true);
+        dHeap array2 = new dHeap(3,5,false);
         array2.add(453);
         array2.add(12);
         array2.add(30);
@@ -69,7 +69,7 @@ public class dHeapTester {
 
     @org.junit.Test
     public void remove() {
-        dHeap array2 = new dHeap(5,5,true);
+        dHeap array2 = new dHeap(5,5,false);
         array2.add(453);
         array2.add(12);
         array2.add(30);
@@ -81,20 +81,36 @@ public class dHeapTester {
         array2.add(1201);
         assertEquals(9, array2.size());
         array2.heapRepresentation();
-        assertEquals(1202,array2.remove());
+        assertEquals(8,array2.remove());
         array2.heapRepresentation();
-        assertEquals(1201,array2.remove());
-        array2.heapRepresentation();
-        assertEquals(453,array2.remove());
-        array2.heapRepresentation();
-        assertEquals(300,array2.remove());
-        array2.heapRepresentation();
-        assertEquals(40,array2.remove());
-        array2.heapRepresentation();
-        assertEquals(30,array2.remove());
+        assertEquals(9,array2.remove());
         array2.heapRepresentation();
         assertEquals(12,array2.remove());
         array2.heapRepresentation();
+        assertEquals(30,array2.remove());
+        array2.heapRepresentation();
+        assertEquals(40,array2.remove());
+        array2.heapRepresentation();
+        assertEquals(300,array2.remove());
+        array2.heapRepresentation();
+        assertEquals(453,array2.remove());
+        array2.heapRepresentation();
+//        assertEquals(9, array2.size());
+//        array2.heapRepresentation();
+//        assertEquals(1202,array2.remove());
+//        array2.heapRepresentation();
+//        assertEquals(1201,array2.remove());
+//        array2.heapRepresentation();
+//        assertEquals(453,array2.remove());
+//        array2.heapRepresentation();
+//        assertEquals(300,array2.remove());
+//        array2.heapRepresentation();
+//        assertEquals(40,array2.remove());
+//        array2.heapRepresentation();
+//        assertEquals(30,array2.remove());
+//        array2.heapRepresentation();
+//        assertEquals(12,array2.remove());
+//        array2.heapRepresentation();
     }
 
     @org.junit.Test(expected = NoSuchElementException.class)

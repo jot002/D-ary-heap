@@ -1,10 +1,13 @@
 /*
- * Name: TODO
- * PID:  TODO
+ * Name: Jonathan Tran
+ * PID:  A15967290
  */
 
 /**
- * TODO
+ * MyPriorityQueue is a class that uses the dHeap class to implement the
+ * priority queue operations. The priority queue uses a 5-ary max-heap
+ * for its implementation. The constructor for MyPriorityQueue takes
+ * one argument: the initial size of the queue
  *
  * @param <T> Generic type
  */
@@ -18,7 +21,7 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
      * @param initialSize the given size
      */
     public MyPriorityQueue(int initialSize) {
-        /* TODO */
+        this.pQueue = new dHeap<T>(5, initialSize,true);
     }
 
     /**
@@ -30,8 +33,11 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
      * @return returns true
      */
     public boolean offer(T element) throws NullPointerException {
-        /* TODO */
-        return false;
+        if (element == null) {
+            throw new NullPointerException();
+        }
+        this.pQueue.add(element);
+        return true;
     }
 
     /**
@@ -41,15 +47,17 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
      * @return The head of the queue (largest element), or null if queue is empty.
      */
     public T poll() {
-        /* TODO */
-        return null;
+        if (this.pQueue.size() == 0) {
+            return null;
+        }
+        return this.pQueue.remove();
     }
 
     /**
      * Clears the contents of the queue
      */
     public void clear() {
-        /* TODO */
+        this.pQueue.clear();
     }
 
     /**
@@ -59,8 +67,10 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
      * @return the next item to be removed, null if the queue is empty
      */
     public T peek() {
-        /* TODO */
-        return null;
+        if (this.pQueue.size() == 0) {
+            return null;
+        }
+        return this.pQueue.element();
     }
 
     /**
@@ -68,8 +78,9 @@ public class MyPriorityQueue<T extends Comparable<? super T>> {
      * @return true is the queue is empty, false otherwise
      */
     public boolean isEmpty() {
-        /* TODO */
+        if (this.pQueue.size() == 0) {
+            return true;
+        }
         return false;
     }
-
 }
