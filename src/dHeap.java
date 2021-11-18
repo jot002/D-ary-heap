@@ -19,17 +19,19 @@ public class dHeap<T extends Comparable<? super T>> implements dHeapInterface<T>
     private int d; // branching factor
     private int nelems; // number of elements
     private boolean isMaxHeap; // boolean to indicate whether heap is max or min
-    private int MAX = 1000000000;
+    private int CAPACITY = 6;
+    private int BINARY = 2;
+    private int DOUBLE = 2;
 
     /**
      * Initializes a binary max heap with capacity = 6
      */
     @SuppressWarnings("unchecked")
     public dHeap() {
-        this.heap = (T[]) new Comparable[6];
+        this.heap = (T[]) new Comparable[CAPACITY];
         this.nelems = 0;
         this.isMaxHeap = true;
-        this.d = 2;
+        this.d = BINARY;
     }
 
     /**
@@ -42,7 +44,7 @@ public class dHeap<T extends Comparable<? super T>> implements dHeapInterface<T>
         this.heap = (T[]) new Comparable[heapSize];
         this.nelems = 0;
         this.isMaxHeap = true;
-        this.d = 2;
+        this.d = BINARY;
     }
 
     /**
@@ -224,7 +226,7 @@ public class dHeap<T extends Comparable<? super T>> implements dHeapInterface<T>
         // checks if it is full
         if (this.nelems == this.heap.length) {
             // doubles the size of the heap
-            T[] newHeap = (T[]) new Comparable[2 * this.heap.length];
+            T[] newHeap = (T[]) new Comparable[DOUBLE * this.heap.length];
             for (int i = 0; i < this.heap.length; i++) {
                 newHeap[i] = this.heap[i];
             }
