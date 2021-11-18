@@ -102,44 +102,29 @@ public class dHeap<T extends Comparable<? super T>> implements dHeapInterface<T>
     }
 
     private void trickleDown(int index) {
-        int firstChild = this.d * index + 1;
-        int lastChild = this.d * index + this.d;
-        T maxChild = this.heap[index];
-        int max=0;
-        for (int i = firstChild; i <= lastChild; i++) {
-            if (this.heap[i].compareTo(maxChild) > 0) {
-                maxChild = this.heap[i];
-                max = i;
-            }
-        }
-//        for (int i = firstChild; i <= lastChild; i++) {
-//            if (this.heap[i].compareTo(max) == 0) {
-//                T temp = this.heap[i];
-//                this.heap[i] = this.heap[main];
-//                this.heap[main] = temp;
-//                break;
-//            }
-//        }
-
-        T tempRoot = this.heap[index];       // save root in temp variable
-        while ((max < this.nelems) && (this.heap[max].compareTo(tempRoot) > 0)){
-            this.heap[index] = this.heap[max];
-            index = max;
-
-            int firstMaxChild = this.d * index + 1;
-            int lastMaxChild = this.d * index + this.d;
-            for (int i = firstChild; i <= lastChild; i++) {
-                if (this.heap[i].compareTo(maxChild) > 0) {
-                    maxChild = this.heap[i];
-                    max = i;
+        int childIndex = (this.d * index) + 1;
+        T elem = this.heap[index];
+        while (childIndex < this.nelems) {
+            T maxValue = elem;
+            int maxIndex = -1;
+            // get the max value and index
+            for (int i = 0; i < d && i + childIndex < this.nelems; i++) {
+                if (this.heap[i + childIndex].compareTo(maxValue) > 0) {
+                    maxValue = this.heap[i + childIndex];
+                    maxIndex = i + childIndex;
                 }
             }
-            T temp = this.heap[max];
-                this.heap[max] = this.heap[index];
-                this.heap[index] = temp;
-
-        this.heap[index] = tempRoot;
-    }
+            if (maxValue == elem) {
+                return;
+            }
+            else {
+                T temp = this.heap[index];
+                this.heap[index] = this.heap[maxIndex];
+                this.heap[maxIndex] = temp;
+                index = maxIndex;
+                childIndex = (d * index) + 1;
+            }
+        }
     }
 
     private void bubbleUp(int index) {
@@ -175,4 +160,5 @@ public class dHeap<T extends Comparable<? super T>> implements dHeapInterface<T>
         }
         System.out.println();
     }
+
 }
